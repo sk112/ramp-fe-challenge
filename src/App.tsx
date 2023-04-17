@@ -19,6 +19,10 @@ export function App() {
     [paginatedTransactions, transactionsByEmployee]
   )
 
+  useEffect(() => {
+    console.log(transactions, paginatedTransactions, transactionsByEmployee)
+  }, [paginatedTransactions, transactions, transactionsByEmployee])
+
   const loadAllTransactions = useCallback(async () => {
     setIsLoading(true)
     transactionsByEmployeeUtils.invalidateData()
@@ -79,17 +83,19 @@ export function App() {
         <div className="RampGrid">
           <Transactions transactions={transactions} />
 
-          {transactions !== null && (
-            <button
-              className="RampButton"
-              disabled={paginatedTransactionsUtils.loading}
-              onClick={async () => {
-                await loadAllTransactions()
-              }}
-            >
-              View More
-            </button>
-          )}
+          {transactions !== null &&
+            transactionsByEmployee === null &&
+            paginatedTransactions?.nextPage && (
+              <button
+                className="RampButton"
+                disabled={paginatedTransactionsUtils.loading}
+                onClick={async () => {
+                  await loadAllTransactions()
+                }}
+              >
+                View More
+              </button>
+            )}
         </div>
       </main>
     </Fragment>
