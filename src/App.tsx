@@ -61,6 +61,7 @@ export function App() {
             label: `${item.firstName} ${item.lastName}`,
           })}
           onChange={async (newValue) => {
+            console.log("newValue: ", newValue)
             if (newValue === null) {
               return
             }
