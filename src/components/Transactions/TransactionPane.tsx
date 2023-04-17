@@ -9,10 +9,6 @@ export const TransactionPane: TransactionPaneComponent = ({
 }) => {
   const [approved, setApproved] = useState(transaction.approved)
 
-  useEffect(() => {
-    console.log("TransactionPane:", loading)
-  }, [loading])
-
   return (
     <div className="RampPane">
       <div className="RampPane--content">
